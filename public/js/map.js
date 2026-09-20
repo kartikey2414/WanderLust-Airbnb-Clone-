@@ -20,7 +20,7 @@ window.addEventListener("load", () => {
     container: "map",
     style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${mapToken}`,
     center: coordinates,
-    zoom: 9,
+    zoom: 13, // <-- 9 se badhakar 13 kar diya hai (proper street & area view)
   });
 
   // Zoom buttons

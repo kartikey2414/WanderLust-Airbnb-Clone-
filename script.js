@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const store = MongoStore.create({
   mongoUrl: dburl,
   crypto: {
-    secret: process.env.SECRET
+    secret: process.env.SECRET,
   },
   touchAfter: 24 * 3600,
 });
@@ -81,6 +81,11 @@ app.use((req, res, next) => {
   next();
 });
 
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
@@ -94,6 +99,8 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
 });
 
-app.listen(8080, () => {
-  console.log("Port is listening on port 8080");
+
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Port is listening on port ${port}`);
 });

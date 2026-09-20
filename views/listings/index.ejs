@@ -1,0 +1,165 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  #filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin: 1.5rem 0 2rem 0;
+    width: 100%;
+  }
+
+  #filters {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.5rem;
+    flex: 1;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter {
+    text-align: center;
+    opacity: 0.7;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .filter:hover {
+    opacity: 1;
+  }
+
+  .filter i {
+    font-size: 1.25rem;
+  }
+
+  .filter p {
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+  }
+
+  .tax-info {
+    display: none;
+  }
+
+  .filter-tax {
+    border: 1px solid #dee2e6;
+    border-radius: 1rem;
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    #filters-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+    .filter-tax {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<div id="filters-container">
+  <div id="filters">
+    <div class="filter">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Iconic Cities</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p>Mountains</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-brands fa-fort-awesome"></i></div>
+      <p>Castles</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-cow"></i></div>
+      <p>Farms</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-tent"></i></div>
+      <p>Camping</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Amazing Pools</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-igloo"></i></div>
+      <p>Domes</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-sailboat"></i></div>
+      <p>Boats</p>
+    </div>
+  </div>
+
+  <div class="filter-tax shadow-sm">
+    <div class="form-check-reverse form-switch m-0">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label ms-2" for="flexSwitchCheckDefault">Display total after taxes</label>
+    </div>
+  </div>
+</div>
+
+<!-- Responsive Grid: Mobile pe 1, Tablet pe 2, Desktop pe 3, Badi screens pe 4 -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4 mb-5">
+  <% for(let listing of allListing) { %>
+    <div class="col">
+      <a href="/listings/<%= listing._id %>" class="listing-link">
+        <div class="card h-100 listing-card border-0">
+          <img 
+            src="<%= listing.image?.url %>" 
+            class="card-img-top" 
+            alt="listing_image" 
+            style="height: 18rem; object-fit: cover; border-radius: 1rem;"
+          />
+          <div class="card-img-overlay"></div>
+          <div class="card-body pt-2 px-1">
+            <p class="card-text mb-0">
+              <span class="fw-bold"><%= listing.title %></span><br>
+              <span class="text-secondary">&#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> / night</span>
+              <i class="tax-info text-danger">&nbsp;&nbsp;+18% GST</i>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<script>
+  let switchtax = document.getElementById("flexSwitchCheckDefault");
+  if (switchtax) {
+    switchtax.addEventListener("click", () => {
+      let taxbtn = document.getElementsByClassName("tax-info");
+      for (let info of taxbtn) {
+        info.style.display = (info.style.display !== "inline") ? "inline" : "none";
+      }
+    });
+  }
+</script>

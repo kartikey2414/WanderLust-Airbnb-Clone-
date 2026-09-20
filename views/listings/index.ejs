@@ -61,6 +61,19 @@
     flex-shrink: 0;
   }
 
+  /* Card and Image Adjustments */
+  .listing-card {
+    border: none !important;
+    margin-bottom: 2rem;
+  }
+
+  .card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    height: 20rem !important;
+    object-fit: cover !important;
+  }
+
   @media (max-width: 991.98px) {
     #filters-container {
       flex-direction: column;
@@ -126,8 +139,8 @@
   </div>
 </div>
 
-<!-- Responsive Grid: Mobile pe 1, Tablet pe 2, Desktop pe 3, Badi screens pe 4 -->
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4 mb-5">
+<!-- Standard Airbnb 3-column Grid (Thoda chauda aur balanced dikhega) -->
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mb-5">
   <% for(let listing of allListing) { %>
     <div class="col">
       <a href="/listings/<%= listing._id %>" class="listing-link">
@@ -136,7 +149,6 @@
             src="<%= listing.image?.url %>" 
             class="card-img-top" 
             alt="listing_image" 
-            style="height: 18rem; object-fit: cover; border-radius: 1rem;"
           />
           <div class="card-img-overlay"></div>
           <div class="card-body pt-2 px-1">

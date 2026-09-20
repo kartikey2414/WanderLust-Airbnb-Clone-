@@ -36,14 +36,22 @@ body {
 .listing-card {
   border: none !important;
   margin-top: 1.5rem !important;
+  width: 100% !important;
 }
 
-/* Card Image Height Fixed */
+
 .card-img-top {
   border-radius: 1rem !important;
   width: 100% !important;
   height: 20rem !important;
   object-fit: cover !important;
+}
+
+
+@media (max-width: 576px) {
+  .card-img-top {
+    height: 18rem !important;
+  }
 }
 
 .card-body {
@@ -76,14 +84,14 @@ body {
   padding-right: 0;
 }
 
-/* Responsive Map Container */
+
 #map {
   height: 400px;
   width: 100%;
   border-radius: 12px;
 }
 
-/* Footer */
+
 .f-info {
   background-color: #ebebeb;
   padding: 1.5rem 0;

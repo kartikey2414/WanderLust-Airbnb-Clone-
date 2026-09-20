@@ -64,7 +64,7 @@
   /* Card and Image Adjustments */
   .listing-card {
     border: none !important;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .card-img-top {
@@ -72,6 +72,13 @@
     width: 100% !important;
     height: 20rem !important;
     object-fit: cover !important;
+  }
+
+  /* Mobile screens par image proper height aur proportion me rahe */
+  @media (max-width: 576px) {
+    .card-img-top {
+      height: 18rem !important;
+    }
   }
 
   @media (max-width: 991.98px) {
@@ -139,8 +146,8 @@
   </div>
 </div>
 
-<!-- Standard Airbnb 3-column Grid (Thoda chauda aur balanced dikhega) -->
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 mb-5">
+<!-- Mobile pe 1 card, Tablets pe 2 cards, Desktop pe 3 cards -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
   <% for(let listing of allListing) { %>
     <div class="col">
       <a href="/listings/<%= listing._id %>" class="listing-link">

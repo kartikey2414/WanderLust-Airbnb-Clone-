@@ -38,9 +38,11 @@ body {
   margin-top: 1.5rem !important;
 }
 
+/* Card Image Height Fixed */
 .card-img-top {
   border-radius: 1rem !important;
   width: 100% !important;
+  height: 20rem !important;
   object-fit: cover !important;
 }
 
